@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import Loader from "./Loader"
 import NewsItem from "./NewsItem"
 
 export default class NewsParent extends Component {
@@ -156,7 +157,7 @@ export default class NewsParent extends Component {
     // }
 
     async updateNews() {
-        this.props.setProgress(10)
+        // this.props.setProgress(10)
         const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page}&pageSize=${this.props.pageSize}`
         console.log(url)
         this.setState({ loading: true })
@@ -173,64 +174,41 @@ export default class NewsParent extends Component {
     }
     async componentDidMount() {
         console.log("component mounted")
-        this.updateNews()
+        await this.updateNews()
         console.log("here i am " + this.articles)
     }
     render() {
         return (
             <div>
                 <div className="container">
-                    <h1 className="text-center my-4">
+                    <h1 className="text-center" style={{ marginTop: "75px" }}>
                         NewsBay Top{" "}
                         {this.capitalizeFirstLetter(this.props.category)}{" "}
                         HeadLines
                     </h1>
+                    <Loader />
                     <div className="row">
-                        <div className="col-md-4 my-2">
-                            <NewsItem />
-                        </div>
-                        <div className="col-md-4 my-2">
-                            <NewsItem />
-                        </div>
-                        <div className="col-md-4 my-2">
-                            <NewsItem />
-                        </div>
-                        <div className="col-md-4 my-2">
-                            <NewsItem />
-                        </div>
-                        <div className="col-md-4 my-2">
-                            <NewsItem />
-                        </div>
-                        <div className="col-md-4 my-2">
-                            <NewsItem />
-                        </div>
-                        <div className="col-md-4 my-2">
-                            <NewsItem />
-                        </div>
-                        <div className="col-md-4 my-2">
-                            <NewsItem />
-                        </div>
-                        <div className="col-md-4 my-2">
-                            <NewsItem />
-                        </div>
-                        <div className="col-md-4 my-2">
-                            <NewsItem />
-                        </div>
-                        <div className="col-md-4 my-2">
-                            <NewsItem />
-                        </div>
-                        <div className="col-md-4 my-2">
-                            <NewsItem />
-                        </div>
-                        <div className="col-md-4 my-2">
-                            <NewsItem />
-                        </div>
-                        <div className="col-md-4 my-2">
-                            <NewsItem />
-                        </div>
-                        <div className="col-md-4 my-2">
-                            <NewsItem />
-                        </div>
+                        {this.state.articles.map((element) => {
+                            return (
+                                <div className="col-md-4" key={element.url}>
+                                    <NewsItem
+                                        title={
+                                            element.title ? element.title : ""
+                                        }
+                                        description={
+                                            element.description
+                                                ? element.description
+                                                : ""
+                                        }
+                                        imageUrl={element.urlToImage}
+                                        newsUrl={element.url}
+                                        author={element.author}
+                                        date={element.publishedAt}
+                                        source={element.source.name}
+                                    />
+                                </div>
+                            )
+                        })}
                     </div>
                 </div>
             </div>

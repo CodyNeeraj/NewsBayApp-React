@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-
+import loading from "./loadingAnimation.gif"
 
 export default class Loader extends Component {
     render() {

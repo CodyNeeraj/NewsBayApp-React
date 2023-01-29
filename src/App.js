@@ -3,8 +3,8 @@ import Navbar from "./components/Navbar"
 import NewsParent from "./components/NewsParent"
 
 function App() {
-    let pageSize = 10
-    const api_key = process.env.NEWS_API_KEY
+    let pageSize = 100
+    const api_key = process.env.REACT_APP_NEWS_API_KEY
     return (
         <div>
             <Navbar />
@@ -13,7 +13,7 @@ function App() {
                 key="general"
                 pageSize={pageSize}
                 country="in"
-                category="general"
+                category="business"
             />
         </div>
     )

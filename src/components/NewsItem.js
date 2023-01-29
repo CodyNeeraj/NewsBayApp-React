@@ -2,20 +2,50 @@ import React, { Component } from "react"
 
 export default class NewsItem extends Component {
     render() {
+        let { title, description, imageUrl, newsUrl, author, date, source } =
+            this.props
+
         return (
-            <div className="container">
-                <div class="card">
-                    <img src="..." class="card-img-top" alt="..." />
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">
-                            Some quick example text to build on the card title
-                            and make up the bulk of the card's content.
-                        </p>
-                        <a href="#" class="btn btn-primary">
-                            Go somewhere
-                        </a>
-                    </div>
+            <div className="card my-2">
+                <div
+                    style={{
+                        display: "flex",
+                        justifyContent: "flex-end",
+                        position: "absolute",
+                        right: "0",
+                    }}
+                >
+                    <span className="badge rounded-pill bg-primary">
+                        {" "}
+                        {source}{" "}
+                    </span>
+                </div>
+                <img
+                    src={
+                        !imageUrl
+                            ? "https://fdn.gsmarena.com/imgroot/news/21/08/xiaomi-smart-home-india-annoucnements/-476x249w4/gsmarena_00.jpg"
+                            : imageUrl
+                    }
+                    className="card-img-top"
+                    alt="..."
+                />
+                <div className="card-body">
+                    <h5 className="card-title">{title} </h5>
+                    <p className="card-text">{description}</p>
+                    <p className="card-text">
+                        <small className="text-muted">
+                            By {!author ? "Unknown" : author} on{" "}
+                            {new Date(date).toGMTString()}
+                        </small>
+                    </p>
+                    <a
+                        rel="noreferrer"
+                        href={newsUrl}
+                        target="_blank"
+                        className="btn btn-sm btn-dark"
+                    >
+                        Read More
+                    </a>
                 </div>
             </div>
         )
