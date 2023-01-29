@@ -1,12 +1,20 @@
 import "./App.css"
 import Navbar from "./components/Navbar"
-import NewsItem from "./components/NewsItem"
+import NewsParent from "./components/NewsParent"
 
 function App() {
+    let pageSize = 10
+    const api_key = process.env.NEWS_API_KEY
     return (
         <div>
             <Navbar />
-            <NewsItem />
+            <NewsParent
+                apiKey={api_key}
+                key="general"
+                pageSize={pageSize}
+                country="in"
+                category="general"
+            />
         </div>
     )
 }

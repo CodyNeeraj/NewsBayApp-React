@@ -3,7 +3,7 @@ import React, { Component } from "react"
 export default class NewsItem extends Component {
     render() {
         return (
-            <div>
+            <div className="container">
                 <div class="card">
                     <img src="..." class="card-img-top" alt="..." />
                     <div class="card-body">
