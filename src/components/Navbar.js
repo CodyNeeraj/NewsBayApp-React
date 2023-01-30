@@ -30,13 +30,25 @@ export default class Navbar extends Component {
                                     aria-current="page"
                                     href="/"
                                 >
-                                    Home
+                                    General
                                 </a>
                                 <a className="nav-link" href="/">
-                                    National
+                                    Business
                                 </a>
                                 <a className="nav-link" href="/">
-                                    About
+                                    Entertainment
+                                </a>
+                                <a className="nav-link" href="/">
+                                    Health
+                                </a>
+                                <a className="nav-link" href="/">
+                                    Science
+                                </a>
+                                <a className="nav-link" href="/">
+                                    Sports
+                                </a>
+                                <a className="nav-link" href="/">
+                                    Technology
                                 </a>
                             </div>
                         </div>
