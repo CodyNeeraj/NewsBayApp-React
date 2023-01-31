@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import { Link } from "react-router-dom"
 
 export default class Navbar extends Component {
     render() {
@@ -6,9 +7,9 @@ export default class Navbar extends Component {
             <div>
                 <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top">
                     <div className="container-fluid">
-                        <a className="navbar-brand" href="/">
+                        <Link className="navbar-brand" to="/">
                             NewsBay
-                        </a>
+                        </Link>
                         <button
                             className="navbar-toggler"
                             type="button"
@@ -25,31 +26,31 @@ export default class Navbar extends Component {
                             id="navbarNavAltMarkup"
                         >
                             <div className="navbar-nav">
-                                <a
+                                <Link
                                     className="nav-link"
                                     aria-current="page"
-                                    href="/"
+                                    to="/"
                                 >
                                     General
-                                </a>
-                                <a className="nav-link" href="/">
+                                </Link>
+                                <Link className="nav-link" to="/business">
                                     Business
-                                </a>
-                                <a className="nav-link" href="/">
+                                </Link>
+                                <Link className="nav-link" to="/entertainment">
                                     Entertainment
-                                </a>
-                                <a className="nav-link" href="/">
+                                </Link>
+                                <Link className="nav-link" to="/health">
                                     Health
-                                </a>
-                                <a className="nav-link" href="/">
+                                </Link>
+                                <Link className="nav-link" to="/science">
                                     Science
-                                </a>
-                                <a className="nav-link" href="/">
+                                </Link>
+                                <Link className="nav-link" to="/sports">
                                     Sports
-                                </a>
-                                <a className="nav-link" href="/">
+                                </Link>
+                                <Link className="nav-link" to="/technology">
                                     Technology
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     </div>
