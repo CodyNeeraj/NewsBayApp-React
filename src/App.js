@@ -22,7 +22,7 @@ export default class App extends Component {
                 <Navbar />
                 <LoadingBar
                     height={2}
-                    color="#f11946"
+                    color="#2696f0"
                     progress={this.state.progress}
                 />
                 <Routes>
@@ -30,7 +30,7 @@ export default class App extends Component {
                         exact
                         path="/"
                         element=<NewsParent
-                            setProgress={this.state.progress}
+                            setProgress={this.setProgress}
                             apiKey={this.api_key}
                             key="general"
                             pageSize={this.pageSize}
@@ -42,7 +42,7 @@ export default class App extends Component {
                         exact
                         path="/business"
                         element=<NewsParent
-                            setProgress={this.state.progress}
+                            setProgress={this.setProgress}
                             apiKey={this.api_key}
                             key="business"
                             pageSize={this.pageSize}
@@ -54,7 +54,7 @@ export default class App extends Component {
                         exact
                         path="/entertainment"
                         element=<NewsParent
-                            setProgress={this.state.progress}
+                            setProgress={this.setProgress}
                             apiKey={this.api_key}
                             key="entertainment"
                             pageSize={this.pageSize}
@@ -66,7 +66,7 @@ export default class App extends Component {
                         exact
                         path="/health"
                         element=<NewsParent
-                            setProgress={this.state.progress}
+                            setProgress={this.setProgress}
                             apiKey={this.api_key}
                             key="health"
                             pageSize={this.pageSize}
@@ -78,7 +78,7 @@ export default class App extends Component {
                         exact
                         path="/science"
                         element=<NewsParent
-                            setProgress={this.state.progress}
+                            setProgress={this.setProgress}
                             apiKey={this.api_key}
                             key="science"
                             pageSize={this.pageSize}
@@ -90,7 +90,7 @@ export default class App extends Component {
                         exact
                         path="/sports"
                         element=<NewsParent
-                            setProgress={this.state.progress}
+                            setProgress={this.setProgress}
                             apiKey={this.api_key}
                             key="sports"
                             pageSize={this.pageSize}
@@ -102,7 +102,7 @@ export default class App extends Component {
                         exact
                         path="/technology"
                         element=<NewsParent
-                            setProgress={this.state.progress}
+                            setProgress={this.setProgress}
                             apiKey={this.api_key}
                             key="technology"
                             pageSize={this.pageSize}
@@ -111,54 +111,6 @@ export default class App extends Component {
                         />
                     />
                 </Routes>
-                {/* <NewsParent
-                    // setProgress={this.setProgress}
-                    apiKey={this.apiKey}
-                    key="business"
-                    pageSize={this.pageSize}
-                    country="in"
-                    category="Business"
-                />
-                <NewsParent
-                    // setProgress={this.setProgress}
-                    apiKey={this.apiKey}
-                    key="entertainment"
-                    pageSize={this.pageSize}
-                    country="in"
-                    category="entertainment"
-                />
-                <NewsParent
-                    // setProgress={this.setProgress}
-                    apiKey={this.apiKey}
-                    key="health"
-                    pageSize={this.pageSize}
-                    country="in"
-                    category="health"
-                />
-                <NewsParent
-                    // setProgress={this.setProgress}
-                    apiKey={this.apiKey}
-                    key="Science"
-                    pageSize={this.pageSize}
-                    country="in"
-                    category="Science"
-                />
-                <NewsParent
-                    // setProgress={this.setProgress}
-                    apiKey={this.apiKey}
-                    key="sports"
-                    pageSize={this.pageSize}
-                    country="in"
-                    category="sports"
-                />
-                <NewsParent
-                    // setProgress={this.setProgress}
-                    apiKey={this.apiKey}
-                    key="technology"
-                    pageSize={this.pageSize}
-                    country="in"
-                    category="technology"
-                /> */}
             </div>
         )
     }

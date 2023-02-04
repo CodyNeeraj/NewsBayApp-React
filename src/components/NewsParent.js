@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import InfiniteScroll from "react-infinite-scroll-component"
 import Loader from "./Loader"
 import NewsItem from "./NewsItem"
 
@@ -35,21 +36,44 @@ export default class NewsParent extends Component {
         })
         this.props.setProgress(100)
     }
+
+    async fetchMoreData() {
+        this.setState({ page: this.state.page + 1 })
+        const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page}&pageSize=${this.props.pageSize}`
+        let data = await fetch(url)
+        let parsedData = await data.json()
+        this.setState({
+            articles: parsedData.articles.concat(parsedData.articles),
+            totalResults: parsedData.totalResults,
+        })
+    }
     async componentDidMount() {
         console.log("component mounted")
         await this.updateNews()
-        console.log("here i am " + this.articles)
+        console.log("Number of articles fetched " + this.state.articles.length)
     }
     render() {
         return (
             <div>
                 <div className="container">
-                    <h1 className="text-center" style={{ marginTop: "75px" }}>
+                    <h1
+                        className="text-center"
+                        style={{ marginTop: "75px", marginBottom: "20px" }}
+                    >
                         NewsBay Top{" "}
                         {this.capitalizeFirstLetter(this.props.category)}{" "}
                         HeadLines
                     </h1>
-                    <Loader />
+                    {this.state.loading && <Loader />}
+                    {/* <InfiniteScroll
+                        dataLength={this.state.articles.length}
+                        next={this.fetchMoreData}
+                        hasMore={
+                            this.state.articles.length !==
+                            this.state.totalResults
+                        }
+                        loader={<Loader />}
+                    /> */}
                     <div className="row">
                         {this.state.articles.map((element) => {
                             return (
@@ -73,6 +97,7 @@ export default class NewsParent extends Component {
                             )
                         })}
                     </div>
+                    {/* <InfiniteScroll /> */}
                 </div>
             </div>
         )
