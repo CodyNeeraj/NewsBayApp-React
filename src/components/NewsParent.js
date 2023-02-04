@@ -19,19 +19,20 @@ export default class NewsParent extends Component {
             this.props.category
         )} - NewsBay`
     }
-
+    async componentDidMount() {
+        await this.updateNews()
+    }
     async updateNews() {
         this.props.setProgress(10)
         const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page}&pageSize=${this.props.pageSize}`
-        console.log(url)
         this.setState({ loading: true })
         let data = await fetch(url)
         this.props.setProgress(30)
         let parsedData = await data.json()
         this.props.setProgress(70)
         this.setState({
-            articles: parsedData.articles,
-            totalResults: parsedData.totalResults,
+            articles: await parsedData.articles,
+            totalResults: await parsedData.totalResults,
             loading: false,
         })
         this.props.setProgress(100)
@@ -47,11 +48,7 @@ export default class NewsParent extends Component {
             totalResults: parsedData.totalResults,
         })
     }
-    async componentDidMount() {
-        console.log("component mounted")
-        await this.updateNews()
-        console.log("Number of articles fetched " + this.state.articles.length)
-    }
+
     render() {
         return (
             <div>
@@ -65,15 +62,15 @@ export default class NewsParent extends Component {
                         HeadLines
                     </h1>
                     {this.state.loading && <Loader />}
-                    {/* <InfiniteScroll
-                        dataLength={this.state.articles.length}
+                    <InfiniteScroll
+                        dataLength={40}
                         next={this.fetchMoreData}
                         hasMore={
                             this.state.articles.length !==
                             this.state.totalResults
                         }
                         loader={<Loader />}
-                    /> */}
+                    />
                     <div className="row">
                         {this.state.articles.map((element) => {
                             return (
